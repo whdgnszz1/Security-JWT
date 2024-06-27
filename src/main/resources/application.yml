@@ -1,0 +1,8 @@
+jwt:
+  secret:
+    key: 7Leo7JeF7L2U7Iqk7ZmU7J207YyF7ZW064u56rWQ7Jyh6rO87KCV7J2E64Gd64K06rOg64KY66m06ryt7Leo7JeF7ZWY7Iuk7IiY7J6I7J2E6rKB64uI64ukLg==
+
+spring:
+  h2:
+    console:
+      enabled: true
