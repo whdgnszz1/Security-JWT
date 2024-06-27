@@ -1,5 +1,6 @@
 package com.example.securityjwttemplate.member;
 
+import com.example.securityjwttemplate.member.domain.MemberEntity;
 import com.example.securityjwttemplate.member.request.LoginRequest;
 import com.example.securityjwttemplate.member.request.SignupRequest;
 import com.example.securityjwttemplate.security.UserDetailsImpl;

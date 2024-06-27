@@ -1,7 +1,7 @@
 package com.example.securityjwttemplate.security;
 
 
-import com.example.securityjwttemplate.member.MemberEntity;
+import com.example.securityjwttemplate.member.domain.MemberEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

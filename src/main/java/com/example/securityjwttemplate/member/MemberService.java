@@ -1,6 +1,7 @@
 package com.example.securityjwttemplate.member;
 
 import com.example.securityjwttemplate.jwt.JwtUtil;
+import com.example.securityjwttemplate.member.domain.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
