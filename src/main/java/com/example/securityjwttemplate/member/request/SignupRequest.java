@@ -1,8 +1,10 @@
 package com.example.securityjwttemplate.member.request;
 
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SignupRequest {
     private String username;
     private String password;

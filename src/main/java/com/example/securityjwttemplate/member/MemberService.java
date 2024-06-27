@@ -10,7 +10,8 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public void signup(String username, String password) {
-        memberRepository.save(new MemberEntity(username, passwordEncoder.encode(password)));
+    public MemberEntity signup(String username, String password) {
+        MemberEntity newMember = new MemberEntity(username, passwordEncoder.encode(password));
+        return memberRepository.save(newMember);
     }
 }
