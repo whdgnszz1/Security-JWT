@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -18,7 +21,7 @@ public class MemberService {
         return memberRepository.save(newMember);
     }
 
-    public String login(String username, String password) {
+    public Map<String, String> login(String username, String password) {
         MemberEntity member = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
 
@@ -26,6 +29,10 @@ public class MemberService {
             throw new IllegalArgumentException("Invalid username or password");
         }
 
-        return jwtUtil.createToken(username, member.getRole().name());
+        String accessToken = jwtUtil.createToken(username, member.getRole().name());
+
+        Map<String, String> tokens = new HashMap<>();
+        tokens.put("accessToken", accessToken);
+        return tokens;
     }
 }
