@@ -26,6 +26,6 @@ public class MemberService {
             throw new IllegalArgumentException("Invalid username or password");
         }
 
-        return jwtUtil.createToken(username);
+        return jwtUtil.createToken(username, member.getRole().name());
     }
 }

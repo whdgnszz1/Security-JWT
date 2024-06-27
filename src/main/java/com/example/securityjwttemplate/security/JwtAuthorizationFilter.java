@@ -1,6 +1,5 @@
 package com.example.securityjwttemplate.security;
 
-
 import com.example.securityjwttemplate.jwt.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -42,9 +41,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             }
 
             Claims info = jwtUtil.getUserInfoFromToken(tokenValue);
+            String username = info.get("username", String.class);
 
             try {
-                setAuthentication(info.getSubject());
+                setAuthentication(username);
             } catch (Exception e) {
                 log.error(e.getMessage());
                 return;
