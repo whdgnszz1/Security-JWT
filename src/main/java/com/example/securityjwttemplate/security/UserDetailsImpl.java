@@ -33,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(member.getRole().name()));
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + member.getRole().name()));
     }
 
     @Override

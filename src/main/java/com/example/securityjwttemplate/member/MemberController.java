@@ -7,6 +7,7 @@ import com.example.securityjwttemplate.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,13 @@ public class MemberController {
 
     @GetMapping("/me")
     public ResponseEntity<MemberEntity> getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        MemberEntity member = userDetails.getMember();
+        return ResponseEntity.ok(member);
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/admin")
+    public ResponseEntity<MemberEntity> getAdminInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         MemberEntity member = userDetails.getMember();
         return ResponseEntity.ok(member);
     }
