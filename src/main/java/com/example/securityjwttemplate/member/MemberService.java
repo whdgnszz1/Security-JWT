@@ -1,5 +1,6 @@
 package com.example.securityjwttemplate.member;
 
+import com.example.securityjwttemplate.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,9 +10,21 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     public MemberEntity signup(String username, String password) {
         MemberEntity newMember = new MemberEntity(username, passwordEncoder.encode(password));
         return memberRepository.save(newMember);
+    }
+
+    public String login(String username, String password) {
+        MemberEntity member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(password, member.getPassword())) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        return jwtUtil.createToken(username);
     }
 }
